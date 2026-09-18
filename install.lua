@@ -1,5 +1,5 @@
 print("press enter to start installation...")
-print("version v1.0.0")
+print("version v1.0.1")
 read()
 if fs.exists("/startup" or "/startup.lua") then
     fs.move("/startup" or "/startup.lua", "/startup2.lua")

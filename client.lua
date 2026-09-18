@@ -19,7 +19,7 @@ forward,backward,left,right = false
 mforward,mbackward,mleft,mright = "top","bottom","left","right"
 
 local function broadcastToCar(side,bool)
-    rednet.broadcast(side.." "..bool, secretkey)
+    rednet.broadcast(side.." "..tostring(bool), secretkey)
 end
 
 while true do
