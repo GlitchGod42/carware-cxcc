@@ -2,7 +2,7 @@ local file=fs.open("carconfig.txt", "r")
 local crypto=require("crypto")
 local secretkey=file.readLine()
 local channel=file.readLine()
-local version = "1.2.2"
+local version = "1.2.3"
 file.close()
 
 print("checking for update")
@@ -18,7 +18,9 @@ elseif update.getResponseCode() <= 400 then
         if yn == "yes" or yn == "y" then
             print("updating!")
             fs.delete(arg[0] or shell.getRunningProgram())
+            fs.delete("/crypto.lua")
             shell.run("wget https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/heads/main/client.lua /car.lua")
+            shell.run("wget https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/heads/main/crypto.lua /crypto.lua")
             os.reboot()
         end
     end

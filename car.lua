@@ -9,7 +9,7 @@ secretkey=f.readLine()
 channel=f.readLine()
 f.close()
 local TIMEOUT = 1000
-local version = "1.2.2"
+local version = "1.2.3"
 rednet.CHANNEL_BROADCAST = channel
 crypto.SECRET_KEY = secretkey
 --print(secretkey)
@@ -27,7 +27,9 @@ elseif update.getResponseCode() <= 400 then
         if yn == "yes" or yn == "y" then
             print("updating!")
             fs.delete(arg[0] or shell.getRunningProgram())
+            fs.delete("/crypto.lua")
             shell.run("wget https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/heads/main/car.lua /startup.lua")
+            shell.run("wget https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/heads/main/crypto.lua /crypto.lua")
             os.reboot()
         end
     end
