@@ -9,9 +9,29 @@ secretkey=f.readLine()
 channel=f.readLine()
 f.close()
 local TIMEOUT = 1000
+local version = "1.2.0"
 rednet.CHANNEL_BROADCAST = channel
 crypto.SECRET_KEY = secretkey
 --print(secretkey)
+
+print("checking for update")
+local update = http.get("https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/heads/main/version.txt")
+
+if not update then
+    print("user is offline, check internet")
+elseif update.getResponseCode() >= 400 then
+    if update.readAll() > version then
+        print("do you want to update?")
+        print("y/N")
+        local yn = read()
+        if yn == "yes" or yn == "y" then
+            print("updating!")
+            fs.delete(arg[0] or shell.getRunningProgram())
+            shell.run("wget https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/heads/main/car.lua /car.lua")
+        end
+    end
+end
+
 rednet.host("carware-cxcc", "car "..os.computerID())
 print("waiting for pc to connect")
 rednet.receive("carware-cxcc")
