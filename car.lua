@@ -8,7 +8,7 @@ local crypto = require("crypto")
 secretkey=f.readLine()
 channel=f.readLine()
 f.close()
-local TIMEOUT = 3000
+local TIMEOUT = 1000
 rednet.CHANNEL_BROADCAST = channel
 crypto.SECRET_KEY = secretkey
 --print(secretkey)

@@ -1,5 +1,5 @@
 print("press enter to start installation...")
-print("version v1.1.0")
+print("version v1.1.1")
 print("added cryptography to make connection secure")
 read()
 if fs.exists("/startup.lua") then
