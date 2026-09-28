@@ -1,5 +1,5 @@
 print("press enter to start installation...")
-print("version v1.2.1")
+print("version v1.2.2")
 print("fixed bug with secret key")
 read()
 if fs.exists("/startup.lua") then

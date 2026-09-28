@@ -2,7 +2,7 @@ local file=fs.open("carconfig.txt", "r")
 local crypto=require("crypto")
 local secretkey=file.readLine()
 local channel=file.readLine()
-local version = "1.2.1"
+local version = "1.2.2"
 file.close()
 
 print("checking for update")
@@ -10,7 +10,7 @@ local update = http.get("https://raw.githubusercontent.com/GlitchGod42/carware-c
 
 if not update then
     print("user is offline, check internet")
-elseif update.getResponseCode() >= 400 then
+elseif update.getResponseCode() <= 400 then
     if update.readAll() > version then
         print("do you want to update?")
         print("y/N")
@@ -18,7 +18,8 @@ elseif update.getResponseCode() >= 400 then
         if yn == "yes" or yn == "y" then
             print("updating!")
             fs.delete(arg[0] or shell.getRunningProgram())
-            shell.run("wget https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/heads/main/car.lua /car.lua")
+            shell.run("wget https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/heads/main/client.lua /car.lua")
+            os.reboot()
         end
     end
 end
