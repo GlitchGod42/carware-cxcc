@@ -9,7 +9,7 @@ secretkey=f.readLine()
 channel=f.readLine()
 f.close()
 local TIMEOUT = 1000
-local version = "1.2.0"
+local version = "1.2.1"
 rednet.CHANNEL_BROADCAST = channel
 crypto.SECRET_KEY = secretkey
 --print(secretkey)

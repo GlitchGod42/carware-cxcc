@@ -2,7 +2,7 @@ local file=fs.open("carconfig.txt", "r")
 local crypto=require("crypto")
 local secretkey=file.readLine()
 local channel=file.readLine()
-local version = "1.2.0"
+local version = "1.2.1"
 file.close()
 
 print("checking for update")

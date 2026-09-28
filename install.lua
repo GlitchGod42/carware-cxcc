@@ -1,6 +1,6 @@
 print("press enter to start installation...")
-print("version v1.2.0")
-print("added updating")
+print("version v1.2.1")
+print("fixed bug with secret key")
 read()
 if fs.exists("/startup.lua") then
     fs.move("/startup.lua","/startup2.lua")
