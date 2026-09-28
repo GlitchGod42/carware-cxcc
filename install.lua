@@ -1,5 +1,6 @@
 print("press enter to start installation...")
-print("version v1.0.1")
+print("version v1.1.0")
+print("added cryptography to make connection secure")
 read()
 if fs.exists("/startup.lua") then
     fs.move("/startup.lua","/startup2.lua")
@@ -9,8 +10,10 @@ print("press enter when you have connnected only 1 disk drive and put your wirel
 read()
 shell.run("cd /disk")
 shell.run("wget https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/heads/main/client.lua car.lua")
+shell.run("wget https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/heads/main/crypto.lua crypto.lua")
 shell.run("cd /")
 shell.run("wget https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/heads/main/car.lua startup.lua")
+shell.run("wget https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/heads/main/crypto.lua crypto.lua")
 
 local rndstrtable = {}
 math.randomseed(os.epoch("utc"))

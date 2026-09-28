@@ -1,25 +1,28 @@
 local file=fs.open("carconfig.txt", "r")
+local crypto=require("crypto")
 local secretkey=file.readLine()
 local channel=file.readLine()
 file.close()
 
 rednet.CHANNEL_BROADCAST = channel
+crypto.SECRET_KEY = secretkey
 
 rednet.open("back")
-local hostId = rednet.lookup(secretkey)
+local hostId = rednet.lookup("carware-cxcc")
 if not hostId then
     print("car was not found!")
     return
 end
 
 print("car found!")
-rednet.send(hostId,"connected",secretkey)
+rednet.send(hostId,crypto.cipher("connected"),"carware-cxcc")
 
 forward,backward,left,right = false
-mforward,mbackward,mleft,mright = "top","bottom","left","right"
+sforward,sbackward,sleft,sright = "top","bottom","left","right"
 
 local function broadcastToCar(side,bool)
-    rednet.broadcast(side.." "..tostring(bool), secretkey)
+    local timestamp = os.epoch("utc")
+    rednet.broadcast(side.." "..tostring(bool)..":"..timestamp, "carware-cxcc")
 end
 
 while true do
@@ -49,27 +52,27 @@ while true do
     end
 
     if forward then
-        broadcastToCar(mforward, false)
+        broadcastToCar(sforward, false)
     else
-        broadcastToCar(mforward, true) -- invert it because of no inverted clutch
+        broadcastToCar(sforward, true) -- invert it because of no inverted clutch
     end
 
     if backward then
-        broadcastToCar(mbackward, true)
+        broadcastToCar(sbackward, true)
     else
-        broadcastToCar(mbackward, false)
+        broadcastToCar(sbackward, false)
     end
 
     if left then
-        broadcastToCar(mleft, true)
+        broadcastToCar(sleft, true)
     else
-        broadcastToCar(mleft, false)
+        broadcastToCar(sleft, false)
     end
 
     if right then
-        broadcastToCar(mright, true)
+        broadcastToCar(sright, true)
     else
-        broadcastToCar(mright, false)
+        broadcastToCar(sright, false)
     end
 end
 
