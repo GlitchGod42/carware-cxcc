@@ -26,7 +26,7 @@ elseif update.getResponseCode() <= 400 then
         local yn = read()
         if yn == "yes" or yn == "y" then
             print("updating!")
-            fs.delete(arg[0] or shell.getRunningProgram())
+            fs.delete("/startup.lua")
             fs.delete("/crypto.lua")
             shell.run("wget https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/heads/main/car.lua /startup.lua")
             shell.run("wget https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/heads/main/crypto.lua /crypto.lua")
