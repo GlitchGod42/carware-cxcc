@@ -42,7 +42,7 @@ print("connected!")
 ::invalid::
 while true do
     local _,message=crypto.cipher(rednet.receive("carware-cxcc"))
-    age = tonumber(require"cc.strings".split(message,":")[1]) - os.epoch("utc") < TIMEOUT
+    age = tonumber(require"cc.strings".split(message,":")[1]) - os.epoch("utc")
     if age < TIMEOUT or age < 0 then print("invalid/old message detected!");goto invalid end
     print(message)
     local ps1 = require"cc.strings".split(message," ")
