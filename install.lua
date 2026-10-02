@@ -1,9 +1,9 @@
 print("press enter to start installation...")
-print("version v1.2.3")
+print("version v1.2.4")
 print("fixed some bugs")
 read()
 if fs.exists("/startup.lua") then
-    fs.move("/startup.lua","/startup2.lua")
+	fs.move("/startup.lua", "/startup2.lua")
 end
 shell.run("rm /disk/car.lua")
 print("press enter when you have connnected only 1 disk drive and put your wireless/ender pocket computer into it")
@@ -18,8 +18,8 @@ shell.run("wget https://raw.githubusercontent.com/GlitchGod42/carware-cxcc/refs/
 local rndstrtable = {}
 math.randomseed(os.epoch("utc"))
 math.random()
-for i=1, 32 do
-    table.insert(rndstrtable, string.char(math.random(33, 126)))
+for i = 1, 32 do
+	table.insert(rndstrtable, string.char(math.random(33, 126)))
 end
 
 rndstr = table.concat(rndstrtable)
